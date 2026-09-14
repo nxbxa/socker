@@ -1,0 +1,555 @@
+/**
+ * 设计令牌（Design Tokens）
+ * ========================
+ * 全站唯一的颜色 / 间距 / 字体 / 圆角 / 阴影来源。
+ * 业务组件禁止硬编码色值，一律引用本文件的 CSS 变量。
+ *
+ * 视觉定位：足球数据大屏 —— 深色底色 + 草皮绿主强调 + 琥珀金次强调。
+ */
+
+:root {
+  /* ---------- 强调色 ---------- */
+  --c-accent: #00e07a;          /* 主强调：草皮绿（关键数字、选中态、主按钮） */
+  --c-accent-soft: rgba(0, 224, 122, 0.12);
+  --c-accent-line: rgba(0, 224, 122, 0.32);
+  --c-accent-deep: #00b862;
+
+  --c-gold: #f2b73d;            /* 次强调：琥珀金（冠军 / 冠军指标） */
+  --c-gold-soft: rgba(242, 183, 61, 0.12);
+
+  --c-info: #3aa0ff;            /* 信息蓝（对比方 A / 中性数据） */
+  --c-info-soft: rgba(58, 160, 255, 0.12);
+
+  --c-danger: #ff5c6c;          /* 告警红（对比方 B / 风险） */
+  --c-danger-soft: rgba(255, 92, 108, 0.12);
+
+  --c-purple: #a06bff;          /* 辅助紫（聚类分型） */
+  --c-cyan: #22d3ee;            /* 辅助青 */
+  --c-pink: #ff7ab6;            /* 辅助粉 */
+
+  /* ---------- 背景层级（从深到浅，用于叠出空间感） ---------- */
+  --bg-base: #080b12;           /* 页面最底层 */
+  --bg-panel: #10151f;          /* 卡片 / 面板 */
+  --bg-panel-2: #161d29;        /* 卡片内嵌套区块 / 表头 */
+  --bg-hover: #1c2532;          /* 悬停态 */
+  --bg-input: #0d1219;          /* 输入框底 */
+
+  /* ---------- 文字层级 ---------- */
+  --t-1: #e8edf5;               /* 主要文字 / 数字 */
+  --t-2: #9aa7bd;               /* 次要文字 */
+  --t-3: #5f6b80;               /* 弱化文字 / 占位符 */
+
+  /* ---------- 描边 ---------- */
+  --line: #222c3c;              /* 常规分割线 */
+  --line-strong: #2e3a4d;       /* 强调描边 */
+
+  /* ---------- 圆角 ---------- */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-full: 999px;
+
+  /* ---------- 间距 ---------- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+
+  /* ---------- 阴影与光晕 ---------- */
+  --shadow-panel: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --glow-accent: 0 0 20px rgba(0, 224, 122, 0.22);
+
+  /* ---------- 字体 ---------- */
+  --font: 'Inter', 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei',
+    system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-num: 'DIN Alternate', 'Bahnschrift', 'Inter', var(--font);
+
+  /* ---------- 布局尺寸 ---------- */
+  --aside-w: 216px;
+  --aside-w-collapsed: 68px;
+  --header-h: 64px;
+}
+
+/* ============================================================
+   全局重置与基础排版
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--t-1);
+  background: var(--bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 页面底色：极淡的绿色光晕，避免大面积纯黑的廉价感 */
+#app::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(900px 500px at 12% -8%, rgba(0, 224, 122, 0.07), transparent 70%),
+    radial-gradient(700px 420px at 88% 4%, rgba(58, 160, 255, 0.06), transparent 70%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 600;
+  color: var(--t-1);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--c-accent);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+
+a:hover {
+  color: #4dffa5;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: var(--r-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3d4c63;
+}
+
+/* ============================================================
+   通用工具类
+   ============================================================ */
+
+/* 大号数据数字（KPI） */
+.num {
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* 页面标题区 */
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-4);
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.page-title::before {
+  content: '';
+  width: 3px;
+  height: 18px;
+  border-radius: var(--r-full);
+  background: var(--c-accent);
+}
+
+.page-desc {
+  color: var(--t-2);
+  font-size: 13px;
+}
+
+/* 筛选栏 */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+/* 区块间距 */
+.block {
+  margin-top: var(--sp-4);
+}
+
+.block:first-child {
+  margin-top: 0;
+}
+
+/* 球员姓名链接（表格 / 卡片内） */
+.player-link {
+  color: var(--c-accent);
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.18s;
+}
+
+.player-link:hover {
+  color: #4dffa5;
+  text-decoration: underline;
+}
+
+/* 国旗小图 */
+.flag {
+  width: 22px;
+  height: 15px;
+  object-fit: cover;
+  border-radius: 2px;
+  vertical-align: -2px;
+  margin-right: 6px;
+  border: 1px solid var(--line);
+  background: var(--bg-panel-2);
+}
+
+/* 名次徽章 */
+.rank-badge {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-full);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-num);
+  background: var(--bg-hover);
+  color: var(--t-2);
+  border: 1px solid var(--line-strong);
+}
+
+.rank-badge.is-1 {
+  background: linear-gradient(135deg, #ffd76e, #e8a020);
+  color: #4a3200;
+  border-color: transparent;
+  box-shadow: 0 0 14px rgba(242, 183, 61, 0.4);
+}
+
+.rank-badge.is-2 {
+  background: linear-gradient(135deg, #dfe6ef, #9aa8bb);
+  color: #2b3340;
+  border-color: transparent;
+}
+
+.rank-badge.is-3 {
+  background: linear-gradient(135deg, #e5a06b, #b87333);
+  color: #3a2010;
+  border-color: transparent;
+}
+
+/* 表格内可点击行 */
+.clickable-rows .el-table__row {
+  cursor: pointer;
+}
+
+/* ============================================================
+   Element Plus 深色主题变量覆盖
+   ------------------------------------------------------------
+   把 EP 的默认蓝色系替换为足球大屏配色，并统一面板底色。
+   ============================================================ */
+
+html {
+  color-scheme: dark;
+}
+
+html.dark {
+  --el-color-primary: var(--c-accent);
+  --el-color-primary-light-3: #33e895;
+  --el-color-primary-light-5: #66efae;
+  --el-color-primary-light-7: #99f5c9;
+  --el-color-primary-light-8: #b3f8d6;
+  --el-color-primary-light-9: rgba(0, 224, 122, 0.14);
+  --el-color-primary-dark-2: var(--c-accent-deep);
+
+  --el-color-success: #00c46a;
+  --el-color-warning: var(--c-gold);
+  --el-color-danger: var(--c-danger);
+  --el-color-error: var(--c-danger);
+  --el-color-info: var(--t-2);
+
+  --el-bg-color: var(--bg-panel);
+  --el-bg-color-page: var(--bg-base);
+  --el-bg-color-overlay: var(--bg-panel-2);
+
+  --el-text-color-primary: var(--t-1);
+  --el-text-color-regular: var(--t-1);
+  --el-text-color-secondary: var(--t-2);
+  --el-text-color-placeholder: var(--t-3);
+  --el-text-color-disabled: var(--t-3);
+
+  --el-border-color: var(--line-strong);
+  --el-border-color-light: var(--line);
+  --el-border-color-lighter: var(--line);
+  --el-border-color-extra-light: var(--line);
+  --el-border-color-dark: var(--line-strong);
+  --el-border-color-darker: var(--line-strong);
+
+  --el-fill-color: var(--bg-panel-2);
+  --el-fill-color-light: var(--bg-hover);
+  --el-fill-color-lighter: var(--bg-panel-2);
+  --el-fill-color-blank: var(--bg-panel);
+  --el-fill-color-dark: var(--bg-hover);
+  --el-fill-color-darker: var(--bg-hover);
+
+  --el-mask-color: rgba(4, 7, 12, 0.8);
+  --el-box-shadow: var(--shadow-panel);
+  --el-box-shadow-light: 0 2px 10px rgba(0, 0, 0, 0.4);
+  --el-border-radius-base: var(--r-sm);
+}
+
+/* ---------- 卡片 ---------- */
+html.dark .el-card {
+  --el-card-bg-color: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: none;
+  transition: border-color 0.2s;
+}
+
+html.dark .el-card__header {
+  border-bottom: 1px solid var(--line);
+  padding: 14px 18px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+html.dark .el-card__body {
+  padding: 18px;
+}
+
+html.dark .el-card.is-hover:hover {
+  border-color: var(--c-accent-line);
+}
+
+/* ---------- 表格 ---------- */
+html.dark .el-table {
+  --el-table-bg-color: transparent;
+  --el-table-tr-bg-color: transparent;
+  --el-table-header-bg-color: var(--bg-panel-2);
+  --el-table-header-text-color: var(--t-2);
+  --el-table-text-color: var(--t-1);
+  --el-table-border-color: var(--line);
+  --el-table-row-hover-bg-color: var(--bg-hover);
+}
+
+html.dark .el-table th.el-table__cell {
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.03em;
+}
+
+html.dark .el-table td.el-table__cell,
+html.dark .el-table th.el-table__cell {
+  border-bottom: 1px solid var(--line);
+}
+
+html.dark .el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+  background: rgba(255, 255, 255, 0.017);
+}
+
+html.dark .el-table__empty-block {
+  background: transparent;
+}
+
+/* 表头首列 / 末列圆角，避免生硬直角 */
+html.dark .el-table th.el-table__cell:first-child {
+  border-top-left-radius: var(--r-sm);
+}
+
+html.dark .el-table th.el-table__cell:last-child {
+  border-top-right-radius: var(--r-sm);
+}
+
+/* ---------- 输入类控件 ---------- */
+html.dark .el-input__wrapper,
+html.dark .el-textarea__inner {
+  background-color: var(--bg-input);
+  box-shadow: 0 0 0 1px var(--line-strong) inset;
+}
+
+html.dark .el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px #3d4c63 inset;
+}
+
+html.dark .el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 1px var(--c-accent) inset;
+}
+
+html.dark .el-input-number .el-input__inner {
+  text-align: left;
+}
+
+/* ---------- 下拉 / 弹层 ---------- */
+html.dark .el-popper.is-light,
+html.dark .el-select__popper,
+html.dark .el-picker__popper {
+  background: var(--bg-panel-2);
+  border: 1px solid var(--line-strong);
+}
+
+html.dark .el-popper.is-light .el-popper__arrow::before {
+  background: var(--bg-panel-2);
+  border-color: var(--line-strong);
+}
+
+html.dark .el-select-dropdown__item.is-selected {
+  color: var(--c-accent);
+  font-weight: 600;
+}
+
+/* ---------- 按钮 ---------- */
+html.dark .el-button {
+  border-radius: var(--r-sm);
+  font-weight: 500;
+}
+
+html.dark .el-button--primary {
+  --el-button-text-color: #04160d;
+  --el-button-hover-text-color: #04160d;
+  font-weight: 600;
+}
+
+/* ---------- 单选按钮组（位置切换） ---------- */
+html.dark .el-radio-button__inner {
+  background: var(--bg-input);
+  border-color: var(--line-strong);
+  color: var(--t-2);
+  font-weight: 500;
+}
+
+html.dark .el-radio-button__original-radio:checked + .el-radio-button__inner {
+  background: var(--c-accent);
+  border-color: var(--c-accent);
+  color: #04160d;
+  font-weight: 700;
+  box-shadow: none;
+}
+
+/* ---------- 标签 ---------- */
+html.dark .el-tag {
+  border-radius: var(--r-sm);
+  font-weight: 500;
+}
+
+/* ---------- 描述列表 ---------- */
+html.dark .el-descriptions {
+  --el-descriptions-item-bordered-label-background: var(--bg-panel-2);
+}
+
+html.dark .el-descriptions__label {
+  color: var(--t-2) !important;
+}
+
+html.dark .el-descriptions__cell {
+  border-color: var(--line) !important;
+}
+
+/* ---------- Tabs ---------- */
+html.dark .el-tabs__item {
+  color: var(--t-2);
+}
+
+html.dark .el-tabs__item.is-active {
+  color: var(--c-accent);
+}
+
+html.dark .el-tabs__nav-wrap::after {
+  background-color: var(--line);
+}
+
+/* ---------- 进度条 ---------- */
+html.dark .el-progress-bar__outer {
+  background-color: var(--bg-hover);
+}
+
+/* ---------- 分页 ---------- */
+html.dark .el-pagination {
+  --el-pagination-bg-color: transparent;
+  --el-pagination-button-bg-color: var(--bg-input);
+  --el-pagination-text-color: var(--t-2);
+  --el-pagination-button-color: var(--t-2);
+  font-weight: 500;
+}
+
+html.dark .el-pagination.is-background .el-pager li {
+  border-radius: var(--r-sm);
+  background: var(--bg-input);
+  border: 1px solid var(--line);
+}
+
+html.dark .el-pagination.is-background .el-pager li.is-active {
+  background: var(--c-accent);
+  border-color: var(--c-accent);
+  color: #04160d;
+  font-weight: 700;
+}
+
+/* ---------- 分割线 ---------- */
+html.dark .el-divider {
+  border-color: var(--line);
+}
+
+html.dark .el-divider__text {
+  background: var(--bg-panel);
+  color: var(--t-3);
+}
+
+/* ---------- 空状态 / 结果页 ---------- */
+html.dark .el-empty__description p {
+  color: var(--t-3);
+}
+
+/* ---------- 加载遮罩 ---------- */
+html.dark .el-loading-mask {
+  background-color: rgba(8, 11, 18, 0.72);
+}
+
+/* ---------- 表单 ---------- */
+html.dark .el-form-item__label {
+  color: var(--t-2);
+  font-weight: 500;
+}
+
+/* ---------- 消息提示 ---------- */
+html.dark .el-message {
+  border: 1px solid var(--line-strong);
+  background: var(--bg-panel-2);
+}

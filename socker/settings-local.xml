@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  本地构建用 Maven 配置
+  ====================
+  本机全局 settings.xml 把仓库镜像到了 alimaven，而本地 ~/.m2 缓存中的
+  Spring Boot 4.1.1 构件来源标记是 central，导致 `mvn -o`（离线）无法解析。
+
+  该文件不配置任何 mirror，直接使用 central 的 id 访问本地缓存，
+  从而支持完全离线的构建与测试：
+
+      mvn -s settings-local.xml -o compile
+      mvn -s settings-local.xml -o test
+-->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                              https://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <localRepository>${user.home}/.m2/repository</localRepository>
+
+  <profiles>
+    <profile>
+      <id>central-local</id>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <name>Maven Central</name>
+          <url>https://repo.maven.apache.org/maven2</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <name>Maven Central</name>
+          <url>https://repo.maven.apache.org/maven2</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>false</enabled></snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>central-local</activeProfile>
+  </activeProfiles>
+</settings>
