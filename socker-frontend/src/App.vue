@@ -171,9 +171,10 @@ const statusText = computed(() => {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #0d121b, #0a0e16);
+  background: var(--bg-panel);
   border-right: 1px solid var(--line);
   transition: width 0.22s ease;
+  box-shadow: 1px 0 4px rgba(0, 0, 0, 0.02);
 }
 
 .is-collapsed .sidebar {
@@ -192,15 +193,15 @@ const statusText = computed(() => {
 }
 
 .brand-mark {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   flex-shrink: 0;
   display: grid;
   place-items: center;
   border-radius: var(--r-md);
-  color: #04160d;
-  background: linear-gradient(135deg, var(--c-accent), #00b862);
-  box-shadow: var(--glow-accent);
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--c-accent), var(--c-accent-deep));
+  box-shadow: 0 4px 12px rgba(0, 184, 98, 0.25);
 }
 
 .brand-text {
@@ -213,6 +214,7 @@ const statusText = computed(() => {
 .brand-text strong {
   font-size: 14px;
   font-weight: 700;
+  color: var(--t-1);
 }
 
 .brand-text em {
@@ -231,7 +233,7 @@ const statusText = computed(() => {
 }
 
 .nav-group + .nav-group {
-  margin-top: 14px;
+  margin-top: 16px;
 }
 
 .nav-group-label {
@@ -250,12 +252,12 @@ const statusText = computed(() => {
   height: 38px;
   padding: 0 10px;
   margin-bottom: 2px;
-  border-radius: var(--r-sm);
+  border-radius: var(--r-md);
   color: var(--t-2);
   font-size: 13.5px;
   font-weight: 500;
   white-space: nowrap;
-  transition: background 0.16s, color 0.16s;
+  transition: all 0.16s;
 }
 
 .nav-item:hover {
@@ -267,7 +269,6 @@ const statusText = computed(() => {
   background: var(--c-accent-soft);
   color: var(--c-accent);
   font-weight: 600;
-  box-shadow: inset 2px 0 0 var(--c-accent);
 }
 
 .is-collapsed .nav-item {
@@ -300,13 +301,13 @@ const statusText = computed(() => {
   flex-shrink: 0;
   border-radius: var(--r-full);
   background: var(--c-accent);
-  box-shadow: 0 0 8px var(--c-accent);
+  box-shadow: 0 0 0 3px var(--c-accent-soft);
 }
 
 .is-down .dot,
 .status.is-down .dot {
   background: var(--c-danger);
-  box-shadow: 0 0 8px var(--c-danger);
+  box-shadow: 0 0 0 3px var(--c-danger-soft);
 }
 
 /* ============ 主区域 ============ */
@@ -324,8 +325,8 @@ const statusText = computed(() => {
   align-items: center;
   gap: 14px;
   padding: 0 20px;
-  background: rgba(13, 18, 27, 0.85);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
 
@@ -393,13 +394,13 @@ const statusText = computed(() => {
 .chip.is-down {
   color: var(--c-danger);
   background: var(--c-danger-soft);
-  border-color: rgba(255, 92, 108, 0.3);
+  border-color: rgba(229, 62, 77, 0.3);
 }
 
 .main {
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  padding: 24px;
 }
 
 /* ============ 过渡动画 ============ */

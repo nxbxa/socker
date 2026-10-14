@@ -1,7 +1,7 @@
 /**
  * ECharts 统一主题
  * ================
- * 全站图表共用一套深色主题：统一色板、轴网、tooltip、图例样式。
+ * 全站图表共用一套浅色主题：统一色板、轴网、tooltip、图例样式。
  *
  * 使用方式（必须走 echarts/core 的按需引入体系）：
  *   import { use } from 'echarts/core'
@@ -13,47 +13,47 @@
  * 色板顺序与 CSS 设计令牌保持一致（见 styles/theme.css）。
  */
 
-export const CHART_THEME_NAME = 'football-dark'
+export const CHART_THEME_NAME = 'football-light'
 
 /** 图表色板：主强调绿 → 信息蓝 → 金 → 紫 → 青 → 粉 */
 export const CHART_PALETTE = [
-  '#00e07a',
-  '#3aa0ff',
-  '#f2b73d',
-  '#a06bff',
-  '#22d3ee',
-  '#ff7ab6',
   '#00b862',
-  '#ff5c6c',
+  '#2589e8',
+  '#d99a20',
+  '#7c3aed',
+  '#0891b2',
+  '#db2777',
+  '#009a52',
+  '#e53e4d',
 ]
 
 /** 常用语义色（供组件直接引用，避免散落硬编码） */
 export const CHART_COLORS = {
-  accent: '#00e07a',
-  gold: '#f2b73d',
-  info: '#3aa0ff',
-  danger: '#ff5c6c',
-  purple: '#a06bff',
-  cyan: '#22d3ee',
-  text1: '#e8edf5',
-  text2: '#9aa7bd',
-  text3: '#5f6b80',
-  line: '#222c3c',
-  panel: '#10151f',
+  accent: '#00b862',
+  gold: '#d99a20',
+  info: '#2589e8',
+  danger: '#e53e4d',
+  purple: '#7c3aed',
+  cyan: '#0891b2',
+  text1: '#1a2332',
+  text2: '#5a6a82',
+  text3: '#94a3b8',
+  line: '#e2e8f0',
+  panel: '#ffffff',
 }
 
-const AXIS_LABEL = { color: '#9aa7bd', fontSize: 12 }
-const AXIS_NAME = { color: '#5f6b80', fontSize: 12 }
-const SPLIT_LINE = { lineStyle: { color: '#222c3c', type: 'dashed' } }
+const AXIS_LABEL = { color: '#5a6a82', fontSize: 12 }
+const AXIS_NAME = { color: '#94a3b8', fontSize: 12 }
+const SPLIT_LINE = { lineStyle: { color: '#e2e8f0', type: 'dashed' } }
 
 const TOOLTIP = {
-  backgroundColor: 'rgba(16, 21, 31, 0.96)',
-  borderColor: '#2e3a4d',
+  backgroundColor: 'rgba(255, 255, 255, 0.98)',
+  borderColor: '#e2e8f0',
   borderWidth: 1,
   padding: [10, 14],
-  textStyle: { color: '#e8edf5', fontSize: 12.5 },
+  textStyle: { color: '#1a2332', fontSize: 12.5 },
   extraCssText:
-    'border-radius:10px;box-shadow:0 8px 28px rgba(0,0,0,.5);backdrop-filter:blur(6px);',
+    'border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.08);backdrop-filter:blur(6px);',
 }
 
 export const chartTheme = {
@@ -63,31 +63,31 @@ export const chartTheme = {
   textStyle: {
     fontFamily:
       "'Inter','HarmonyOS Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif",
-    color: '#9aa7bd',
+    color: '#5a6a82',
   },
 
   title: {
-    textStyle: { color: '#e8edf5', fontSize: 14, fontWeight: 600 },
-    subtextStyle: { color: '#5f6b80', fontSize: 12 },
+    textStyle: { color: '#1a2332', fontSize: 14, fontWeight: 600 },
+    subtextStyle: { color: '#94a3b8', fontSize: 12 },
   },
 
   legend: {
-    textStyle: { color: '#9aa7bd', fontSize: 12 },
-    inactiveColor: '#3d4c63',
+    textStyle: { color: '#5a6a82', fontSize: 12 },
+    inactiveColor: '#cbd5e1',
     itemWidth: 12,
     itemHeight: 8,
     itemGap: 14,
   },
 
   tooltip: TOOLTIP,
-  // 坐标轴触发的 tooltip 需要单独配置，否则不会继承上面的深色样式
+  // 坐标轴触发的 tooltip 需要单独配置，否则不会继承上面的浅色样式
   axisPointer: {
-    lineStyle: { color: '#3d4c63' },
-    crossStyle: { color: '#3d4c63' },
+    lineStyle: { color: '#cbd5e1' },
+    crossStyle: { color: '#cbd5e1' },
     label: {
-      backgroundColor: '#2e3a4d',
-      color: '#e8edf5',
-      borderColor: '#3d4c63',
+      backgroundColor: '#1a2332',
+      color: '#ffffff',
+      borderColor: '#1a2332',
     },
   },
 
@@ -97,11 +97,11 @@ export const chartTheme = {
     top: 48,
     bottom: 12,
     containLabel: true,
-    borderColor: '#222c3c',
+    borderColor: '#e2e8f0',
   },
 
   categoryAxis: {
-    axisLine: { lineStyle: { color: '#2e3a4d' } },
+    axisLine: { lineStyle: { color: '#cbd5e1' } },
     axisTick: { show: false },
     axisLabel: AXIS_LABEL,
     nameTextStyle: AXIS_NAME,
@@ -117,31 +117,31 @@ export const chartTheme = {
   },
 
   logAxis: {
-    axisLine: { lineStyle: { color: '#2e3a4d' } },
+    axisLine: { lineStyle: { color: '#cbd5e1' } },
     axisLabel: AXIS_LABEL,
     splitLine: SPLIT_LINE,
   },
 
   radar: {
-    axisName: { color: '#9aa7bd', fontSize: 12 },
-    axisLine: { lineStyle: { color: '#222c3c' } },
-    splitLine: { lineStyle: { color: '#222c3c' } },
+    axisName: { color: '#5a6a82', fontSize: 12 },
+    axisLine: { lineStyle: { color: '#e2e8f0' } },
+    splitLine: { lineStyle: { color: '#e2e8f0' } },
     splitArea: {
       show: true,
-      areaStyle: { color: ['rgba(255,255,255,0.012)', 'transparent'] },
+      areaStyle: { color: ['rgba(0,0,0,0.02)', 'transparent'] },
     },
   },
 
   // 饼图 / 环形图的默认描边用面板底色，形成分割感
   pie: {
-    itemStyle: { borderColor: '#10151f', borderWidth: 2 },
-    label: { color: '#9aa7bd' },
-    labelLine: { lineStyle: { color: '#2e3a4d' } },
+    itemStyle: { borderColor: '#ffffff', borderWidth: 2 },
+    label: { color: '#5a6a82' },
+    labelLine: { lineStyle: { color: '#cbd5e1' } },
   },
 
   bar: {
     itemStyle: { borderRadius: [4, 4, 0, 0] },
-    label: { color: '#e8edf5' },
+    label: { color: '#1a2332' },
   },
 
   line: {
@@ -155,14 +155,14 @@ export const chartTheme = {
   },
 
   visualMap: {
-    textStyle: { color: '#9aa7bd' },
+    textStyle: { color: '#5a6a82' },
   },
 
   dataZoom: {
-    borderColor: '#2e3a4d',
-    textStyle: { color: '#9aa7bd' },
-    handleStyle: { color: '#3d4c63' },
-    fillerColor: 'rgba(0,224,122,0.08)',
+    borderColor: '#e2e8f0',
+    textStyle: { color: '#5a6a82' },
+    handleStyle: { color: '#cbd5e1' },
+    fillerColor: 'rgba(0, 184, 98, 0.08)',
   },
 }
 

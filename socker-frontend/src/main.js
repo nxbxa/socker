@@ -71,18 +71,16 @@ import 'element-plus/theme-chalk/el-select.css'
 import 'element-plus/theme-chalk/el-table.css'
 import 'element-plus/theme-chalk/el-tabs.css'
 import 'element-plus/theme-chalk/el-tag.css'
-// Element Plus 官方深色主题变量（必须在 base.css 之后引入）
-import 'element-plus/theme-chalk/dark/css-vars.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
-// 设计令牌 + 全局样式 + Element Plus 深色变量覆盖（引入顺序不可调整）
+// 设计令牌 + 全局样式 + Element Plus 浅色变量覆盖（引入顺序不可调整）
 import './styles/theme.css'
 
 import App from './App.vue'
 import router from './router'
 
-// 启用 Element Plus 深色模式（css-vars.css 依赖 html.dark 选择器）
-document.documentElement.classList.add('dark')
+// 启用浅色主题（html.light 选择器在 theme.css 中定义 EP 变量覆盖）
+document.documentElement.classList.add('light')
 
 const components = [
   ElAlert,

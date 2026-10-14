@@ -72,7 +72,7 @@ const chartOption = computed(() => {
     yAxis: {
       type: 'category',
       data: reversed.map((p) => p.player),
-      axisLabel: { color: '#e8edf5', fontSize: 12 },
+      axisLabel: { color: '#1a2332', fontSize: 12 },
       axisLine: { show: false },
       axisTick: { show: false },
     },
@@ -92,7 +92,7 @@ const chartOption = computed(() => {
           show: true,
           position: 'right',
           formatter: (p) => fmt(p.value, 2),
-          color: '#9aa7bd',
+          color: '#5a6a82',
           fontSize: 11.5,
           fontWeight: 600,
         },
@@ -312,7 +312,21 @@ function podiumHeight(index) {
   align-items: flex-end;
   justify-content: center;
   gap: var(--sp-5);
-  padding: var(--sp-3) 0 var(--sp-2);
+  padding: var(--sp-4) 0 var(--sp-2);
+  position: relative;
+}
+
+/* 冠军上方的金色氛围光 */
+.podium::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 120px;
+  background: radial-gradient(ellipse, rgba(217, 154, 32, 0.12), transparent 70%);
+  pointer-events: none;
 }
 
 .podium-slot {
@@ -320,8 +334,13 @@ function podiumHeight(index) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.podium-slot:hover {
+  transform: translateY(-4px);
 }
 
 .podium-slot.is-empty {
@@ -329,40 +348,43 @@ function podiumHeight(index) {
 }
 
 .podium-medal {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
   border-radius: var(--r-full);
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 2px;
 }
 
 .place-1 .podium-medal {
   background: linear-gradient(135deg, #ffd76e, #e8a020);
   color: #4a3200;
-  box-shadow: 0 0 20px rgba(242, 183, 61, 0.45);
+  box-shadow: 0 4px 12px rgba(217, 154, 32, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .place-2 .podium-medal {
-  background: linear-gradient(135deg, #dfe6ef, #9aa8bb);
+  background: linear-gradient(135deg, #e8eef5, #b0bccf);
   color: #2b3340;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .place-3 .podium-medal {
-  background: linear-gradient(135deg, #e5a06b, #b87333);
+  background: linear-gradient(135deg, #e8b080, #c07840);
   color: #3a2010;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .podium-name {
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 700;
   text-align: center;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--t-1);
 }
 
 .podium-club {
@@ -379,32 +401,50 @@ function podiumHeight(index) {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 10px;
+  padding-top: 12px;
   border-radius: var(--r-md) var(--r-md) 0 0;
   border: 1px solid var(--line);
   border-bottom: none;
   transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+
+/* 领奖台顶部高光 */
+.podium-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+  opacity: 0.4;
 }
 
 .place-1 .podium-bar {
-  background: linear-gradient(180deg, rgba(242, 183, 61, 0.16), rgba(242, 183, 61, 0.02));
-  border-color: rgba(242, 183, 61, 0.30);
+  background: linear-gradient(180deg, rgba(217, 154, 32, 0.12), rgba(217, 154, 32, 0.02));
+  border-color: rgba(217, 154, 32, 0.3);
+  color: var(--c-gold);
+  box-shadow: 0 -4px 20px rgba(217, 154, 32, 0.08);
 }
 
 .place-2 .podium-bar {
-  background: linear-gradient(180deg, rgba(223, 230, 239, 0.10), rgba(223, 230, 239, 0.02));
-  border-color: rgba(223, 230, 239, 0.18);
+  background: linear-gradient(180deg, rgba(176, 188, 207, 0.12), rgba(176, 188, 207, 0.02));
+  border-color: rgba(176, 188, 207, 0.25);
+  color: #94a3b8;
 }
 
 .place-3 .podium-bar {
-  background: linear-gradient(180deg, rgba(229, 160, 107, 0.13), rgba(229, 160, 107, 0.02));
-  border-color: rgba(229, 160, 107, 0.24);
+  background: linear-gradient(180deg, rgba(192, 120, 64, 0.12), rgba(192, 120, 64, 0.02));
+  border-color: rgba(192, 120, 64, 0.25);
+  color: #c07840;
 }
 
 .podium-score {
-  font-size: 19px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 800;
   color: var(--t-1);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ============ 表格 ============ */

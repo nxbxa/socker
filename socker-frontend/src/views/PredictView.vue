@@ -362,7 +362,7 @@ const importanceOption = computed(() => {
     yAxis: {
       type: 'category',
       data: top.map((i) => i.label),
-      axisLabel: { color: '#9aa7bd', fontSize: 11.5 },
+      axisLabel: { color: '#5a6a82', fontSize: 11.5 },
       axisLine: { show: false },
       axisTick: { show: false },
     },
@@ -375,7 +375,7 @@ const importanceOption = computed(() => {
           show: true,
           position: 'right',
           formatter: (p) => fmt(p.value, 3),
-          color: '#9aa7bd',
+          color: '#5a6a82',
           fontSize: 11,
         },
         data: top.map((i) => i.importance),
@@ -415,7 +415,7 @@ const testScatterOption = computed(() => {
         markLine: {
           silent: true,
           symbol: 'none',
-          lineStyle: { color: '#5f6b80', type: 'dashed' },
+          lineStyle: { color: '#94a3b8', type: 'dashed' },
           label: { show: false },
           data: [[{ coord: [lo, lo] }, { coord: [hi, hi] }]],
         },

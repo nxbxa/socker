@@ -144,7 +144,7 @@ const radarOption = computed(() => {
       radius: '62%',
       center: ['50%', '52%'],
       splitNumber: 4,
-      axisName: { color: '#9aa7bd', fontSize: 12 },
+      axisName: { color: '#5a6a82', fontSize: 12 },
     },
     series: [
       {

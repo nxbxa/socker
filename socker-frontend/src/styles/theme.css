@@ -4,49 +4,49 @@
  * 全站唯一的颜色 / 间距 / 字体 / 圆角 / 阴影来源。
  * 业务组件禁止硬编码色值，一律引用本文件的 CSS 变量。
  *
- * 视觉定位：足球数据大屏 —— 深色底色 + 草皮绿主强调 + 琥珀金次强调。
+ * 视觉定位：现代浅色 SaaS —— 干净白底 + 草皮绿主强调 + 柔和阴影。
  */
 
 :root {
   /* ---------- 强调色 ---------- */
-  --c-accent: #00e07a;          /* 主强调：草皮绿（关键数字、选中态、主按钮） */
-  --c-accent-soft: rgba(0, 224, 122, 0.12);
-  --c-accent-line: rgba(0, 224, 122, 0.32);
-  --c-accent-deep: #00b862;
+  --c-accent: #00b862;          /* 主强调：草皮绿 */
+  --c-accent-soft: rgba(0, 184, 98, 0.10);
+  --c-accent-line: rgba(0, 184, 98, 0.28);
+  --c-accent-deep: #009a52;
 
-  --c-gold: #f2b73d;            /* 次强调：琥珀金（冠军 / 冠军指标） */
-  --c-gold-soft: rgba(242, 183, 61, 0.12);
+  --c-gold: #d99a20;            /* 次强调：琥珀金 */
+  --c-gold-soft: rgba(217, 154, 32, 0.10);
 
-  --c-info: #3aa0ff;            /* 信息蓝（对比方 A / 中性数据） */
-  --c-info-soft: rgba(58, 160, 255, 0.12);
+  --c-info: #2589e8;            /* 信息蓝 */
+  --c-info-soft: rgba(37, 137, 232, 0.10);
 
-  --c-danger: #ff5c6c;          /* 告警红（对比方 B / 风险） */
-  --c-danger-soft: rgba(255, 92, 108, 0.12);
+  --c-danger: #e53e4d;          /* 告警红 */
+  --c-danger-soft: rgba(229, 62, 77, 0.10);
 
-  --c-purple: #a06bff;          /* 辅助紫（聚类分型） */
-  --c-cyan: #22d3ee;            /* 辅助青 */
-  --c-pink: #ff7ab6;            /* 辅助粉 */
+  --c-purple: #7c3aed;          /* 辅助紫 */
+  --c-cyan: #0891b2;            /* 辅助青 */
+  --c-pink: #db2777;            /* 辅助粉 */
 
-  /* ---------- 背景层级（从深到浅，用于叠出空间感） ---------- */
-  --bg-base: #080b12;           /* 页面最底层 */
-  --bg-panel: #10151f;          /* 卡片 / 面板 */
-  --bg-panel-2: #161d29;        /* 卡片内嵌套区块 / 表头 */
-  --bg-hover: #1c2532;          /* 悬停态 */
-  --bg-input: #0d1219;          /* 输入框底 */
+  /* ---------- 背景层级（从浅到深） ---------- */
+  --bg-base: #f4f6f9;           /* 页面最底层 */
+  --bg-panel: #ffffff;          /* 卡片 / 面板 */
+  --bg-panel-2: #f8fafc;        /* 卡片内嵌套区块 / 表头 */
+  --bg-hover: #f0f4f8;          /* 悬停态 */
+  --bg-input: #ffffff;         /* 输入框底 */
 
   /* ---------- 文字层级 ---------- */
-  --t-1: #e8edf5;               /* 主要文字 / 数字 */
-  --t-2: #9aa7bd;               /* 次要文字 */
-  --t-3: #5f6b80;               /* 弱化文字 / 占位符 */
+  --t-1: #1a2332;               /* 主要文字 */
+  --t-2: #5a6a82;               /* 次要文字 */
+  --t-3: #94a3b8;               /* 弱化文字 / 占位符 */
 
   /* ---------- 描边 ---------- */
-  --line: #222c3c;              /* 常规分割线 */
-  --line-strong: #2e3a4d;       /* 强调描边 */
+  --line: #e2e8f0;              /* 常规分割线 */
+  --line-strong: #cbd5e1;       /* 强调描边 */
 
   /* ---------- 圆角 ---------- */
   --r-sm: 6px;
   --r-md: 10px;
-  --r-lg: 14px;
+  --r-lg: 16px;
   --r-full: 999px;
 
   /* ---------- 间距 ---------- */
@@ -58,8 +58,9 @@
   --sp-6: 32px;
 
   /* ---------- 阴影与光晕 ---------- */
-  --shadow-panel: 0 8px 28px rgba(0, 0, 0, 0.45);
-  --glow-accent: 0 0 20px rgba(0, 224, 122, 0.22);
+  --shadow-panel: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-panel-hover: 0 4px 12px rgba(0, 0, 0, 0.06), 0 8px 28px rgba(0, 184, 98, 0.08);
+  --glow-accent: 0 0 16px rgba(0, 184, 98, 0.18);
 
   /* ---------- 字体 ---------- */
   --font: 'Inter', 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei',
@@ -67,9 +68,9 @@
   --font-num: 'DIN Alternate', 'Bahnschrift', 'Inter', var(--font);
 
   /* ---------- 布局尺寸 ---------- */
-  --aside-w: 216px;
-  --aside-w-collapsed: 68px;
-  --header-h: 64px;
+  --aside-w: 220px;
+  --aside-w-collapsed: 72px;
+  --header-h: 60px;
 }
 
 /* ============================================================
@@ -100,7 +101,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 页面底色：极淡的绿色光晕，避免大面积纯黑的廉价感 */
+/* 页面底色：极淡的绿色光晕 + 噪点纹理 */
 #app::before {
   content: '';
   position: fixed;
@@ -108,8 +109,19 @@ body {
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(900px 500px at 12% -8%, rgba(0, 224, 122, 0.07), transparent 70%),
-    radial-gradient(700px 420px at 88% 4%, rgba(58, 160, 255, 0.06), transparent 70%);
+    radial-gradient(800px 400px at 10% -5%, rgba(0, 184, 98, 0.05), transparent 70%),
+    radial-gradient(600px 360px at 90% 0%, rgba(37, 137, 232, 0.04), transparent 70%);
+}
+
+/* 噪点纹理：极淡颗粒感，提升印刷品质感 */
+#app::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -129,13 +141,13 @@ a {
 }
 
 a:hover {
-  color: #4dffa5;
+  color: var(--c-accent-deep);
 }
 
 /* 滚动条 */
 ::-webkit-scrollbar {
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -143,12 +155,12 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--line-strong);
+  background: #d1d9e3;
   border-radius: var(--r-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3d4c63;
+  background: #b0bccf;
 }
 
 /* ============================================================
@@ -169,28 +181,30 @@ a:hover {
   justify-content: space-between;
   gap: var(--sp-4);
   flex-wrap: wrap;
-  margin-bottom: var(--sp-4);
+  margin-bottom: var(--sp-5);
 }
 
 .page-title {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: var(--sp-2);
+  color: var(--t-1);
 }
 
 .page-title::before {
   content: '';
-  width: 3px;
-  height: 18px;
+  width: 4px;
+  height: 20px;
   border-radius: var(--r-full);
-  background: var(--c-accent);
+  background: linear-gradient(180deg, var(--c-accent), var(--c-accent-deep));
 }
 
 .page-desc {
   color: var(--t-2);
-  font-size: 13px;
+  font-size: 13.5px;
+  margin-top: 4px;
 }
 
 /* 筛选栏 */
@@ -213,13 +227,13 @@ a:hover {
 /* 球员姓名链接（表格 / 卡片内） */
 .player-link {
   color: var(--c-accent);
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: color 0.18s;
 }
 
 .player-link:hover {
-  color: #4dffa5;
+  color: var(--c-accent-deep);
   text-decoration: underline;
 }
 
@@ -248,24 +262,24 @@ a:hover {
   font-family: var(--font-num);
   background: var(--bg-hover);
   color: var(--t-2);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
 }
 
 .rank-badge.is-1 {
   background: linear-gradient(135deg, #ffd76e, #e8a020);
   color: #4a3200;
   border-color: transparent;
-  box-shadow: 0 0 14px rgba(242, 183, 61, 0.4);
+  box-shadow: 0 2px 8px rgba(217, 154, 32, 0.3);
 }
 
 .rank-badge.is-2 {
-  background: linear-gradient(135deg, #dfe6ef, #9aa8bb);
+  background: linear-gradient(135deg, #e8eef5, #b0bccf);
   color: #2b3340;
   border-color: transparent;
 }
 
 .rank-badge.is-3 {
-  background: linear-gradient(135deg, #e5a06b, #b87333);
+  background: linear-gradient(135deg, #e8b080, #c07840);
   color: #3a2010;
   border-color: transparent;
 }
@@ -276,25 +290,23 @@ a:hover {
 }
 
 /* ============================================================
-   Element Plus 深色主题变量覆盖
-   ------------------------------------------------------------
-   把 EP 的默认蓝色系替换为足球大屏配色，并统一面板底色。
+   Element Plus 浅色主题变量覆盖
    ============================================================ */
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
-html.dark {
+html.light {
   --el-color-primary: var(--c-accent);
-  --el-color-primary-light-3: #33e895;
-  --el-color-primary-light-5: #66efae;
-  --el-color-primary-light-7: #99f5c9;
-  --el-color-primary-light-8: #b3f8d6;
-  --el-color-primary-light-9: rgba(0, 224, 122, 0.14);
+  --el-color-primary-light-3: #4dd690;
+  --el-color-primary-light-5: #7de2af;
+  --el-color-primary-light-7: #adeccf;
+  --el-color-primary-light-8: #c4f1dd;
+  --el-color-primary-light-9: rgba(0, 184, 98, 0.10);
   --el-color-primary-dark-2: var(--c-accent-deep);
 
-  --el-color-success: #00c46a;
+  --el-color-success: #00b862;
   --el-color-warning: var(--c-gold);
   --el-color-danger: var(--c-danger);
   --el-color-error: var(--c-danger);
@@ -302,7 +314,7 @@ html.dark {
 
   --el-bg-color: var(--bg-panel);
   --el-bg-color-page: var(--bg-base);
-  --el-bg-color-overlay: var(--bg-panel-2);
+  --el-bg-color-overlay: var(--bg-panel);
 
   --el-text-color-primary: var(--t-1);
   --el-text-color-regular: var(--t-1);
@@ -324,26 +336,26 @@ html.dark {
   --el-fill-color-dark: var(--bg-hover);
   --el-fill-color-darker: var(--bg-hover);
 
-  --el-mask-color: rgba(4, 7, 12, 0.8);
+  --el-mask-color: rgba(255, 255, 255, 0.8);
   --el-box-shadow: var(--shadow-panel);
-  --el-box-shadow-light: 0 2px 10px rgba(0, 0, 0, 0.4);
+  --el-box-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);
   --el-border-radius-base: var(--r-sm);
 }
 
 /* ---------- 卡片 ---------- */
-html.dark .el-card {
+html.light .el-card {
   --el-card-bg-color: var(--bg-panel);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
-  box-shadow: none;
-  transition: border-color 0.2s;
+  box-shadow: var(--shadow-panel);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 
-html.dark .el-card__header {
+html.light .el-card__header {
   border-bottom: 1px solid var(--line);
-  padding: 14px 18px;
+  padding: 16px 20px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 14.5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -351,16 +363,17 @@ html.dark .el-card__header {
   flex-wrap: wrap;
 }
 
-html.dark .el-card__body {
-  padding: 18px;
+html.light .el-card__body {
+  padding: 20px;
 }
 
-html.dark .el-card.is-hover:hover {
+html.light .el-card.is-hover:hover {
   border-color: var(--c-accent-line);
+  box-shadow: var(--shadow-panel-hover);
 }
 
 /* ---------- 表格 ---------- */
-html.dark .el-table {
+html.light .el-table {
   --el-table-bg-color: transparent;
   --el-table-tr-bg-color: transparent;
   --el-table-header-bg-color: var(--bg-panel-2);
@@ -370,186 +383,188 @@ html.dark .el-table {
   --el-table-row-hover-bg-color: var(--bg-hover);
 }
 
-html.dark .el-table th.el-table__cell {
+html.light .el-table th.el-table__cell {
   font-weight: 600;
   font-size: 12.5px;
   letter-spacing: 0.03em;
 }
 
-html.dark .el-table td.el-table__cell,
-html.dark .el-table th.el-table__cell {
+html.light .el-table td.el-table__cell,
+html.light .el-table th.el-table__cell {
   border-bottom: 1px solid var(--line);
 }
 
-html.dark .el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
-  background: rgba(255, 255, 255, 0.017);
+html.light .el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+  background: rgba(0, 0, 0, 0.015);
 }
 
-html.dark .el-table__empty-block {
+html.light .el-table__empty-block {
   background: transparent;
 }
 
-/* 表头首列 / 末列圆角，避免生硬直角 */
-html.dark .el-table th.el-table__cell:first-child {
+/* 表头首列 / 末列圆角 */
+html.light .el-table th.el-table__cell:first-child {
   border-top-left-radius: var(--r-sm);
 }
 
-html.dark .el-table th.el-table__cell:last-child {
+html.light .el-table th.el-table__cell:last-child {
   border-top-right-radius: var(--r-sm);
 }
 
 /* ---------- 输入类控件 ---------- */
-html.dark .el-input__wrapper,
-html.dark .el-textarea__inner {
+html.light .el-input__wrapper,
+html.light .el-textarea__inner {
   background-color: var(--bg-input);
   box-shadow: 0 0 0 1px var(--line-strong) inset;
 }
 
-html.dark .el-input__wrapper:hover {
-  box-shadow: 0 0 0 1px #3d4c63 inset;
+html.light .el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px #94a3b8 inset;
 }
 
-html.dark .el-input__wrapper.is-focus {
+html.light .el-input__wrapper.is-focus {
   box-shadow: 0 0 0 1px var(--c-accent) inset;
 }
 
-html.dark .el-input-number .el-input__inner {
+html.light .el-input-number .el-input__inner {
   text-align: left;
 }
 
 /* ---------- 下拉 / 弹层 ---------- */
-html.dark .el-popper.is-light,
-html.dark .el-select__popper,
-html.dark .el-picker__popper {
-  background: var(--bg-panel-2);
-  border: 1px solid var(--line-strong);
+html.light .el-popper.is-light,
+html.light .el-select__popper,
+html.light .el-picker__popper {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
-html.dark .el-popper.is-light .el-popper__arrow::before {
-  background: var(--bg-panel-2);
-  border-color: var(--line-strong);
+html.light .el-popper.is-light .el-popper__arrow::before {
+  background: var(--bg-panel);
+  border-color: var(--line);
 }
 
-html.dark .el-select-dropdown__item.is-selected {
+html.light .el-select-dropdown__item.is-selected {
   color: var(--c-accent);
   font-weight: 600;
 }
 
 /* ---------- 按钮 ---------- */
-html.dark .el-button {
+html.light .el-button {
   border-radius: var(--r-sm);
   font-weight: 500;
 }
 
-html.dark .el-button--primary {
-  --el-button-text-color: #04160d;
-  --el-button-hover-text-color: #04160d;
+html.light .el-button--primary {
+  --el-button-text-color: #ffffff;
+  --el-button-hover-text-color: #ffffff;
   font-weight: 600;
 }
 
 /* ---------- 单选按钮组（位置切换） ---------- */
-html.dark .el-radio-button__inner {
-  background: var(--bg-input);
+html.light .el-radio-button__inner {
+  background: var(--bg-panel-2);
   border-color: var(--line-strong);
   color: var(--t-2);
   font-weight: 500;
 }
 
-html.dark .el-radio-button__original-radio:checked + .el-radio-button__inner {
+html.light .el-radio-button__original-radio:checked + .el-radio-button__inner {
   background: var(--c-accent);
   border-color: var(--c-accent);
-  color: #04160d;
+  color: #ffffff;
   font-weight: 700;
   box-shadow: none;
 }
 
 /* ---------- 标签 ---------- */
-html.dark .el-tag {
+html.light .el-tag {
   border-radius: var(--r-sm);
   font-weight: 500;
 }
 
 /* ---------- 描述列表 ---------- */
-html.dark .el-descriptions {
+html.light .el-descriptions {
   --el-descriptions-item-bordered-label-background: var(--bg-panel-2);
 }
 
-html.dark .el-descriptions__label {
+html.light .el-descriptions__label {
   color: var(--t-2) !important;
 }
 
-html.dark .el-descriptions__cell {
+html.light .el-descriptions__cell {
   border-color: var(--line) !important;
 }
 
 /* ---------- Tabs ---------- */
-html.dark .el-tabs__item {
+html.light .el-tabs__item {
   color: var(--t-2);
 }
 
-html.dark .el-tabs__item.is-active {
+html.light .el-tabs__item.is-active {
   color: var(--c-accent);
 }
 
-html.dark .el-tabs__nav-wrap::after {
+html.light .el-tabs__nav-wrap::after {
   background-color: var(--line);
 }
 
 /* ---------- 进度条 ---------- */
-html.dark .el-progress-bar__outer {
+html.light .el-progress-bar__outer {
   background-color: var(--bg-hover);
 }
 
 /* ---------- 分页 ---------- */
-html.dark .el-pagination {
+html.light .el-pagination {
   --el-pagination-bg-color: transparent;
-  --el-pagination-button-bg-color: var(--bg-input);
+  --el-pagination-button-bg-color: var(--bg-panel);
   --el-pagination-text-color: var(--t-2);
   --el-pagination-button-color: var(--t-2);
   font-weight: 500;
 }
 
-html.dark .el-pagination.is-background .el-pager li {
+html.light .el-pagination.is-background .el-pager li {
   border-radius: var(--r-sm);
-  background: var(--bg-input);
+  background: var(--bg-panel-2);
   border: 1px solid var(--line);
 }
 
-html.dark .el-pagination.is-background .el-pager li.is-active {
+html.light .el-pagination.is-background .el-pager li.is-active {
   background: var(--c-accent);
   border-color: var(--c-accent);
-  color: #04160d;
+  color: #ffffff;
   font-weight: 700;
 }
 
 /* ---------- 分割线 ---------- */
-html.dark .el-divider {
+html.light .el-divider {
   border-color: var(--line);
 }
 
-html.dark .el-divider__text {
+html.light .el-divider__text {
   background: var(--bg-panel);
   color: var(--t-3);
 }
 
 /* ---------- 空状态 / 结果页 ---------- */
-html.dark .el-empty__description p {
+html.light .el-empty__description p {
   color: var(--t-3);
 }
 
 /* ---------- 加载遮罩 ---------- */
-html.dark .el-loading-mask {
-  background-color: rgba(8, 11, 18, 0.72);
+html.light .el-loading-mask {
+  background-color: rgba(244, 246, 249, 0.72);
 }
 
 /* ---------- 表单 ---------- */
-html.dark .el-form-item__label {
+html.light .el-form-item__label {
   color: var(--t-2);
   font-weight: 500;
 }
 
 /* ---------- 消息提示 ---------- */
-html.dark .el-message {
-  border: 1px solid var(--line-strong);
-  background: var(--bg-panel-2);
+html.light .el-message {
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
+  box-shadow: var(--shadow-panel);
 }

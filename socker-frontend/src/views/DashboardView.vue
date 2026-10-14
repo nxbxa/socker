@@ -92,14 +92,14 @@ const pieOption = computed(() => {
         label: {
           show: true,
           formatter: '{b}\n{c} 人',
-          color: '#9aa7bd',
+          color: '#5a6a82',
           fontSize: 12,
           lineHeight: 16,
         },
         labelLine: { length: 10, length2: 12 },
         emphasis: {
           scaleSize: 6,
-          label: { color: '#e8edf5', fontWeight: 600 },
+          label: { color: '#1a2332', fontWeight: 600 },
         },
         data: dist.map((p, i) => ({
           name: p.position_label,
@@ -336,7 +336,7 @@ function goPlayer(name) {
               </el-table-column>
               <el-table-column label="轮廓系数" width="110" align="center">
                 <template #default="{ row }">
-                  <span class="num" :style="{ color: row.silhouette >= 0.25 ? '#00e07a' : '#f2b73d' }">
+                  <span class="num" :style="{ color: row.silhouette >= 0.25 ? '#00b862' : '#d99a20' }">
                     {{ fmt(row.silhouette, 3) }}
                   </span>
                 </template>

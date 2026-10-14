@@ -93,11 +93,11 @@ export function scoreLevel(score) {
 
 /** 评分色阶对应的十六进制色值（供内联 style / 图表使用） */
 export const SCORE_COLORS = {
-  elite: '#00e07a',
-  good: '#3aa0ff',
-  mid: '#f2b73d',
-  low: '#ff5c6c',
-  none: '#5f6b80',
+  elite: '#00b862',
+  good: '#2589e8',
+  mid: '#d99a20',
+  low: '#e53e4d',
+  none: '#94a3b8',
 }
 
 export function scoreColor(score) {

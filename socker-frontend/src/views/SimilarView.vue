@@ -164,7 +164,7 @@ const scatterOption = computed(() => {
           show: true,
           position: 'right',
           formatter: (p) => p.data?.player || '',
-          color: '#9aa7bd',
+          color: '#5a6a82',
           fontSize: 10.5,
         },
         data: points,

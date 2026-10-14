@@ -2,8 +2,8 @@
 /**
  * KPI 统计卡片
  * ============
- * 深色数据大屏的核心视觉单元：左侧色条 + 图标 + 大号等宽数字 + 说明文字。
- * 数值为 null 时显示占位符而不是 0，避免"假数据"误导。
+ * 现代浅色数据卡片：左侧色条 + 图标 + 大号渐变数字 + 说明文字。
+ * hover 时上浮 + 边框发光。数值为 null 时显示占位符而不是 0。
  */
 import { computed } from 'vue'
 import AppIcon from './AppIcon.vue'
@@ -47,7 +47,9 @@ const isEmpty = computed(
       <span v-if="icon" class="stat-icon"><AppIcon :name="icon" :size="16" /></span>
     </div>
     <div class="stat-value num" :class="{ 'is-empty': isEmpty }">
-      {{ display }}<em v-if="unit && !isEmpty" class="stat-unit">{{ unit }}</em>
+      <span v-if="!isEmpty" class="value-gradient">{{ display }}</span>
+      <template v-else>{{ display }}</template>
+      <em v-if="unit && !isEmpty" class="stat-unit">{{ unit }}</em>
     </div>
     <div v-if="hint" class="stat-hint">{{ hint }}</div>
   </div>
@@ -57,16 +59,18 @@ const isEmpty = computed(
 .stat {
   position: relative;
   overflow: hidden;
-  padding: 16px 18px;
+  padding: 20px 22px;
   border-radius: var(--r-lg);
   background: var(--bg-panel);
   border: 1px solid var(--line);
-  transition: border-color 0.2s, transform 0.2s;
+  box-shadow: var(--shadow-panel);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .stat:hover {
-  border-color: var(--line-strong);
-  transform: translateY(-1px);
+  border-color: var(--tone-line);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-panel-hover);
 }
 
 /* 左侧主题色条 */
@@ -74,23 +78,28 @@ const isEmpty = computed(
   content: '';
   position: absolute;
   left: 0;
-  top: 14px;
-  bottom: 14px;
+  top: 18px;
+  bottom: 18px;
   width: 3px;
   border-radius: 0 var(--r-full) var(--r-full) 0;
-  background: var(--tone-color);
+  background: var(--tone-gradient);
 }
 
 .stat-glow {
   position: absolute;
-  right: -30px;
-  top: -30px;
-  width: 110px;
-  height: 110px;
+  right: -36px;
+  top: -36px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  background: var(--tone-soft);
-  filter: blur(6px);
+  background: radial-gradient(circle, var(--tone-soft), transparent 70%);
   pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.25s;
+}
+
+.stat:hover .stat-glow {
+  opacity: 1;
 }
 
 .stat-head {
@@ -98,25 +107,38 @@ const isEmpty = computed(
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .stat-label {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--t-2);
   font-weight: 500;
 }
 
 .stat-icon {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  background: var(--tone-soft);
   color: var(--tone-color);
-  opacity: 0.75;
 }
 
 .stat-value {
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 800;
   line-height: 1.15;
-  color: var(--tone-color);
+  color: var(--t-1);
+  letter-spacing: -0.02em;
+}
+
+.value-gradient {
+  background: var(--tone-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .stat-value.is-empty {
@@ -124,16 +146,16 @@ const isEmpty = computed(
 }
 
 .stat-unit {
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  color: var(--t-2);
+  color: var(--t-3);
   margin-left: 4px;
 }
 
 .stat-hint {
-  margin-top: 4px;
-  font-size: 11.5px;
+  margin-top: 6px;
+  font-size: 12px;
   color: var(--t-3);
 }
 
@@ -141,25 +163,35 @@ const isEmpty = computed(
 .tone-accent {
   --tone-color: var(--c-accent);
   --tone-soft: var(--c-accent-soft);
+  --tone-line: var(--c-accent-line);
+  --tone-gradient: linear-gradient(135deg, var(--c-accent), #4dd690);
 }
 
 .tone-gold {
   --tone-color: var(--c-gold);
   --tone-soft: var(--c-gold-soft);
+  --tone-line: rgba(217, 154, 32, 0.3);
+  --tone-gradient: linear-gradient(135deg, var(--c-gold), #f0c040);
 }
 
 .tone-info {
   --tone-color: var(--c-info);
   --tone-soft: var(--c-info-soft);
+  --tone-line: rgba(37, 137, 232, 0.3);
+  --tone-gradient: linear-gradient(135deg, var(--c-info), #6db8ff);
 }
 
 .tone-danger {
   --tone-color: var(--c-danger);
   --tone-soft: var(--c-danger-soft);
+  --tone-line: rgba(229, 62, 77, 0.3);
+  --tone-gradient: linear-gradient(135deg, var(--c-danger), #ff7a8a);
 }
 
 .tone-purple {
   --tone-color: var(--c-purple);
-  --tone-soft: rgba(160, 107, 255, 0.12);
+  --tone-soft: rgba(124, 58, 237, 0.10);
+  --tone-line: rgba(124, 58, 237, 0.3);
+  --tone-gradient: linear-gradient(135deg, var(--c-purple), #a78bfa);
 }
 </style>
